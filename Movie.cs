@@ -1,10 +1,15 @@
 ﻿using System;
 namespace MovieDatabase
 {
-	public class Movie
+	internal class Movie
 	{
-		public Movie()
+		string title;
+		string category;
+
+		public Movie(string title, string category)
 		{
+			title = title;
+			category = category;
 		}
 	}
 }
