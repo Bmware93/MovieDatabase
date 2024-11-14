@@ -3,13 +3,13 @@ namespace MovieDatabase
 {
 	internal class Movie
 	{
-		string title;
-		string category;
+		public string title;
+		public string category;
 
 		public Movie(string title, string category)
 		{
-			title = title;
-			category = category;
+			this.title = title;
+			this.category = category;
 		}
 	}
 }
