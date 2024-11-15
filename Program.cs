@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using MovieDatabase;
 
+bool endProgram = false;
 List<Movie> availableMovies = new List<Movie>()
 {
     new Movie("Toy Story", "Animated"),
@@ -20,30 +21,57 @@ var dramaMovies = availableMovies.Where(x => x.category == "Drama").ToList();
 var animatedMovies = availableMovies.Where(x => x.category == "Animated").ToList();
 var scifiMovies = availableMovies.Where(x => x.category == "Sci-Fi").ToList();
 
-Console.WriteLine("Welcome to the Movie list application!");
-Console.WriteLine("There are 15 movies in this list");
-Console.WriteLine("You can choose from categories: Horror, Drama, Animated or Sci-Fi");
-Console.WriteLine("What category are you interested in?");
-
-string userInput = Console.ReadLine().ToLower();
-
-switch(userInput)
+bool IsValidMovieCategory(string category)
 {
-    case "horror":
-        horrorMovies.ForEach(x => Console.WriteLine(x.title));
-        break;
-    case "drama":
-        dramaMovies.ForEach(x => Console.WriteLine(x.title));
-        break;
-    case "animated":
-        animatedMovies.ForEach(x => Console.WriteLine(x.title));
-        break;
-    case "sci-fi":
-        scifiMovies.ForEach(x => Console.WriteLine(x.title));
-        break;
+    if(category == "horror" || category == "animated" || category == "sci-fi" || category == "drama")
+    {
+        return true;
+    }
+    return false;
 }
 
-Console.ReadLine();
+do
+{
+    Console.WriteLine("Welcome to the Movie list application!");
+    Console.WriteLine("There are 15 movies in this list");
+    Console.WriteLine("You can choose from categories: Horror, Drama, Animated or Sci-Fi");
+    Console.WriteLine("What category are you interested in?");
+
+    string userInput = Console.ReadLine().ToLower();
+
+    bool vaildUserOption =  IsValidMovieCategory(userInput);
+
+    while (String.IsNullOrWhiteSpace(userInput) || vaildUserOption == false)
+    {
+        Console.WriteLine("You've entered something invalid.");
+        Console.WriteLine("What category are you interested in?");
+        Console.WriteLine("You can choose from categories: Horror, Drama, Animated or Sci-Fi");
+        userInput = Console.ReadLine().ToLower();
+        vaildUserOption = IsValidMovieCategory(userInput);
+    }
+
+    switch (userInput)
+    {
+        case "horror":
+            horrorMovies.ForEach(x => Console.WriteLine(x.title));
+            break;
+        case "drama":
+            dramaMovies.ForEach(x => Console.WriteLine(x.title));
+            break;
+        case "animated":
+            animatedMovies.ForEach(x => Console.WriteLine(x.title));
+            break;
+        case "sci-fi":
+            scifiMovies.ForEach(x => Console.WriteLine(x.title));
+            break;
+    }
+    Console.WriteLine("Continue? (Yes/No)");
+
+
+    Console.ReadLine();
+} while (endProgram == false);
+
+
 
 
 
