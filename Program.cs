@@ -19,7 +19,7 @@ List<Movie> availableMovies = new List<Movie>()
 var horrorMovies = availableMovies.Where(x => x.category == "Horror").ToList();
 var dramaMovies = availableMovies.Where(x => x.category == "Drama").ToList();
 var animatedMovies = availableMovies.Where(x => x.category == "Animated").ToList();
-var scifiMovies = availableMovies.Where(x => x.category == "Sci-Fi").ToList();
+var scifiMovies = availableMovies.Where(x => x.category == "Sci-fi").ToList();
 
 bool IsValidMovieCategory(string category)
 {
@@ -33,9 +33,9 @@ bool IsValidMovieCategory(string category)
 do
 {
     Console.WriteLine("Welcome to the Movie list application!");
-    Console.WriteLine("There are 15 movies in this list");
-    Console.WriteLine("You can choose from categories: Horror, Drama, Animated or Sci-Fi");
+    Console.WriteLine("There are 10 movies in this list");
     Console.WriteLine("What category are you interested in?");
+    Console.WriteLine("You can choose from categories: Horror, Drama, Animated or Sci-Fi");
 
     string userInput = Console.ReadLine().ToLower();
 
@@ -66,9 +66,13 @@ do
             break;
     }
     Console.WriteLine("Continue? (Yes/No)");
+    userInput = Console.ReadLine().ToLower();
 
+    if(userInput != "yes")
+    {
+        endProgram = true;
+    }
 
-    Console.ReadLine();
 } while (endProgram == false);
 
 
